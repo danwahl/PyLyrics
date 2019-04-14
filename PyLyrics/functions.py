@@ -93,7 +93,7 @@ class PyLyrics:
 			for match in lyrics.findAll(tag):
 				match.replaceWithChildren()
 		#Get output as a string and remove non unicode characters and replace <br> with newlines
-		output = str(lyrics).encode('utf-8', errors='replace')[22:-6:].decode("utf-8").replace('\n','').replace('<br/>','\n')
+		output = str(lyrics)[22:-6:].decode("utf-8").replace('\n','').replace('<br/>','\n')
 		try:
 			return output
 		except:
