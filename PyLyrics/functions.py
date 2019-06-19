@@ -78,9 +78,10 @@ class PyLyrics:
                 r = requests.get('http://lyrics.wikia.com/{0}:{1}'.format(singer,song))
                 s = BeautifulSoup(r.text, features="html.parser")
                 #Get main lyrics holder
+                album = str(s.find('i').find('a').text())
                 lyrics = s.find("div",{'class':'lyricbox'})
                 if lyrics is None:
-                        #raise ValueError("Song or Singer does not exist or the API does not have Lyrics")
+                #raise ValueError("Song or Singer does not exist or the API does not have Lyrics")
                         return None
                 #Remove Scripts
                 [s.extract() for s in lyrics('script')]
@@ -103,9 +104,9 @@ class PyLyrics:
                     output = str(lyrics)[22:-6:].decode("utf-8").replace('\n','').\
                             replace('<br/>','\n')
                 try:
-                        return output
+                        return [album, output]
                 except:
-                        return output.encode('utf-8')
+                        return [album, output.encode('utf-8')]
 
 def main():
         albums = PyLyrics.getAlbums('OneRepublic')
