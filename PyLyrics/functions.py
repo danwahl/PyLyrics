@@ -78,7 +78,7 @@ class PyLyrics:
                 r = requests.get('http://lyrics.wikia.com/{0}:{1}'.format(singer,song))
                 s = BeautifulSoup(r.text, features="html.parser")
                 #Get main lyrics holder
-                album = str(s.find('i').find('a').text())
+                album = str(s.find('i').find('a').text)
                 lyrics = s.find("div",{'class':'lyricbox'})
                 if lyrics is None:
                 #raise ValueError("Song or Singer does not exist or the API does not have Lyrics")
