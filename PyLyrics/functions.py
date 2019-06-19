@@ -78,7 +78,7 @@ class PyLyrics:
 			r = requests.get('http://lyrics.wikia.com/{0}:{1}'.format(singer,song))
 			s = BeautifulSoup(r.text, features="html.parser")
 			if s.find('i') is None:
-				raise ValueError("API could not find the song.")
+				# raise ValueError("API could not find the song.")
 				return None
 
 			album = str(s.find('i').find('a').text)
